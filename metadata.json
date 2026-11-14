@@ -1,0 +1,6 @@
+{
+  "name": "Ninho — Rotina do Bebê",
+  "description": "Aplicativo para iOS e PWA para gerenciar horários e duração de amamentação e sono do bebê, com gráficos de progresso, lembretes inteligentes e importação de planilhas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
