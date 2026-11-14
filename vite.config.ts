@@ -5,7 +5,12 @@ import {defineConfig} from 'vite';
 import {VitePWA} from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
+  const rawBase = process.env.VITE_BASE_PATH || '/';
+  const normalizedBase = rawBase.startsWith('/') ? rawBase : `/${rawBase}`;
+  const base = normalizedBase.endsWith('/') ? normalizedBase : `${normalizedBase}/`;
+
   return {
+    base,
     build: {
       target: ['es2020', 'safari14'],
     },
@@ -14,32 +19,32 @@ export default defineConfig(() => {
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
-        useCredentials: true,
+        useCredentials: !process.env.VITE_BASE_PATH,
         manifest: {
-          id: '/',
+          id: base,
           name: 'Kaju — Rotina do Bebê',
           short_name: 'Kaju',
           description: 'Controle de amamentação e sono do bebê para iOS com gráficos e lembretes inteligentes.',
           theme_color: '#F7F8FA',
           background_color: '#F7F8FA',
           display: 'standalone',
-          start_url: '/',
-          scope: '/',
+          start_url: base,
+          scope: base,
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: `${base}pwa-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: `${base}pwa-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: `${base}pwa-maskable-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',

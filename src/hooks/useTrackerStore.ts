@@ -172,7 +172,7 @@ export function useTrackerStore() {
         try {
           new Notification(title, {
             body,
-            icon: '/pwa-192x192.png',
+            icon: `${import.meta.env.BASE_URL}pwa-192x192.png`,
           });
         } catch {
           // ignore if Notification constructor blocked in embedded iframe
